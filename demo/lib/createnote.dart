@@ -8,7 +8,7 @@ class CreateNoteLayout extends StatefulWidget {
 }
 
 class CreateNoteLayoutState extends State<CreateNoteLayout> {
-  EditorJSEditor editorJSEditor;
+  EditorJSEditor? editorJSEditor;
 
   @override
   void initState() {
@@ -21,15 +21,17 @@ class CreateNoteLayoutState extends State<CreateNoteLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Create Note")
-        ),
-        body: SingleChildScrollView(
-            child: Column(
-          children: [
-            (editorJSEditor != null) ? editorJSEditor : Text("Please wait")
-          ],
-        )) // This trailing comma makes auto-formatting nicer for build methods.
-        );
+      appBar: AppBar(
+        title: Text("Create Note")
+      ),
+      body: SingleChildScrollView(
+          child: Column(
+        children: [
+          editorJSEditor != null
+            ? editorJSEditor ?? Container()
+            : Text("Please wait")
+        ],
+      )) // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 }

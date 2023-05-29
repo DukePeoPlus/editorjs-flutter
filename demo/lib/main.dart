@@ -22,16 +22,20 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
   final String title;
+
+  const MyHomePage({
+    Key? key,
+    required this.title
+  }) : super(key: key);
+
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  EditorJSView editorJSView;
+  EditorJSView? editorJSView;
 
   @override
   void initState() {
@@ -65,7 +69,9 @@ class _MyHomePageState extends State<MyHomePage> {
         shrinkWrap: true,
         padding: EdgeInsets.all(15),
         children: [
-          (editorJSView != null) ? editorJSView : Text("Please wait...")
+          editorJSView != null
+           ? editorJSView ?? Container()
+           : Text("Please wait...")
         ],
       ),
       floatingActionButton: FloatingActionButton(
